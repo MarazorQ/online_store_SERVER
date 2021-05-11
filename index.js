@@ -3,6 +3,7 @@ require('dotenv').config()
 const sequelize = require('./db')
 const models = require('./models/models')
 const cors = require('cors')
+const fileUpload = require('express-fileupload')
 const router = require('./routes/index')
 const errorHandler = require('./middlewares/errorHandleMiddleware')
 
@@ -13,6 +14,8 @@ const app = express()
 app.use(cors())
 // чтобы парсить json формат
 app.use(express.json())
+//для загрузки файлов
+app.use(fileUpload({}))
 app.use('/api', router)
 
 //middleware который обрабатывает ошибки(замыкающий), должен идти в самом конце!
