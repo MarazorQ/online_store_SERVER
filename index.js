@@ -4,6 +4,7 @@ const sequelize = require('./db')
 const models = require('./models/models')
 const cors = require('cors')
 const router = require('./routes/index')
+const errorHandler = require('./middlewares/errorHandleMiddleware')
 
 const PORT = process.env.PORT || 5000
 
@@ -13,6 +14,9 @@ app.use(cors())
 // чтобы парсить json формат
 app.use(express.json())
 app.use('/api', router)
+
+//middleware который обрабатывает ошибки(замыкающий), должен идти в самом конце!
+app.use(errorHandler())
 
 app.get('/', (req, res) => {
     res.status(200).json({message: 'Is work!'})
