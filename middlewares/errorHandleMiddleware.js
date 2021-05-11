@@ -1,9 +1,8 @@
-const ApiErrors = require('../errors/apiErrors')
+const ApiError = require('../errors/apiErrors');
 
-module.exports = function(req, res, err, next){
-    //instanceof проверяет, принадлежит ли объект к определённому класс
-    if (err instanceof ApiErrors){
+module.exports = function (err, req, res, next) {
+    if (err instanceof ApiError) {
         return res.status(err.status).json({message: err.message})
     }
-    return res.status(500).json({message: "Необработанная ошибка"})
+    return res.status(500).json({message: "Непредвиденная ошибка!"})
 }

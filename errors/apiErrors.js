@@ -16,3 +16,5 @@ class ApiErrors extends Error{
         return new ApiErrors(403, message)
     }
 }
+
+module.exports = ApiErrors
