@@ -5,7 +5,7 @@ module.exports = function (req, res, next){
         next()// нас интересуют только методы put,post,get,delete, поэтому пропускаем
     }
     try{
-        const token = req.headers.authorization.split('')[1]// Bearer fdsefdsfsd13243 (выцепляем токен)
+        const token = req.headers.authorization.split(' ')[1]// Bearer fdsefdsfsd13243 (выцепляем токен)
         if (!token){
             return res.status(401).json({message: "не авторизован!"})
         }

@@ -44,8 +44,9 @@ class UserController {
         res.json({token})
     }
 
-    async auth(req, res){
-
+    async auth(req, res, next){
+        const token = createJwt(req.user.id, req.user.email, req.user.role)
+        res.json({token})
     }
 }
 
