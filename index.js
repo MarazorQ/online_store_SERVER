@@ -6,6 +6,7 @@ const cors = require('cors')
 const fileUpload = require('express-fileupload')
 const router = require('./routes/index')
 const errorHandler = require('./middlewares/errorHandleMiddleware')
+const path = require('path')
 
 const PORT = process.env.PORT || 5000
 
@@ -14,6 +15,8 @@ const app = express()
 app.use(cors())
 // чтобы парсить json формат
 app.use(express.json())
+// чтобы можно было получить картинку в браузере по названию
+app.use(express.static(path.resolve(__dirname, 'static')))
 //для загрузки файлов
 app.use(fileUpload({}))
 app.use('/api', router)
